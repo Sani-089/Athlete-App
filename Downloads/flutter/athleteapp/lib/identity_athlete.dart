@@ -253,121 +253,127 @@ class _IdentityAthletePageState extends State<IdentityAthletePage> {
         iconTheme: const IconThemeData(color: Colors.white),
         elevation: 0,
       ),
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color(0xFF1E3A5F),
-              Color(0xFF4A90E2),
-            ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+      body: Stack(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Color(0xFF1E3A5F),
+                  Color(0xFF4A90E2),
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
+            ),
           ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 40.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                "Isi Data Diri Anda",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-              const SizedBox(height: 20),
-
-              TextField(
-                controller: _namaController,
-                decoration: InputDecoration(
-                  labelText: 'Nama',
-                  labelStyle: const TextStyle(color: Colors.white),
-                  filled: true,
-                  fillColor: Colors.white.withOpacity(0.1),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 40.0),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "Isi Data Diri Anda",
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
-                ),
-              ),
-              const SizedBox(height: 20),
-
-              TextField(
-                controller: _umurController,
-                decoration: InputDecoration(
-                  labelText: 'Umur',
-                  labelStyle: const TextStyle(color: Colors.white),
-                  filled: true,
-                  fillColor: Colors.white.withOpacity(0.1),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+                  const SizedBox(height: 20),
+                        
+                  TextField(
+                    controller: _namaController,
+                    decoration: InputDecoration(
+                      labelText: 'Nama',
+                      labelStyle: const TextStyle(color: Colors.white),
+                      filled: true,
+                      fillColor: Colors.white.withOpacity(0.1),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
                   ),
-                ),
-                keyboardType: TextInputType.number,
-              ),
-              const SizedBox(height: 20),
-
-              TextField(
-                controller: _beratBadanController,
-                decoration: InputDecoration(
-                  labelText: 'Berat Badan (kg)',
-                  labelStyle: const TextStyle(color: Colors.white),
-                  filled: true,
-                  fillColor: Colors.white.withOpacity(0.1),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+                  const SizedBox(height: 20),
+                        
+                  TextField(
+                    controller: _umurController,
+                    decoration: InputDecoration(
+                      labelText: 'Umur',
+                      labelStyle: const TextStyle(color: Colors.white),
+                      filled: true,
+                      fillColor: Colors.white.withOpacity(0.1),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    keyboardType: TextInputType.number,
                   ),
-                ),
-                keyboardType: TextInputType.number,
-              ),
-              const SizedBox(height: 20),
-
-              TextField(
-                controller: _merokokController,
-                decoration: InputDecoration(
-                  labelText: 'Merokok (ketik "ya" atau "tidak")',
-                  labelStyle: const TextStyle(color: Colors.white),
-                  filled: true,
-                  fillColor: Colors.white.withOpacity(0.1),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+                  const SizedBox(height: 20),
+                        
+                  TextField(
+                    controller: _beratBadanController,
+                    decoration: InputDecoration(
+                      labelText: 'Berat Badan (kg)',
+                      labelStyle: const TextStyle(color: Colors.white),
+                      filled: true,
+                      fillColor: Colors.white.withOpacity(0.1),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    keyboardType: TextInputType.number,
                   ),
-                ),
-              ),
-              const SizedBox(height: 20),
-
-              TextField(
-                controller: _cabangOlahragaController,
-                decoration: InputDecoration(
-                  labelText: 'Cabang Olahraga',
-                  labelStyle: const TextStyle(color: Colors.white),
-                  filled: true,
-                  fillColor: Colors.white.withOpacity(0.1),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+                  const SizedBox(height: 20),
+                        
+                  TextField(
+                    controller: _merokokController,
+                    decoration: InputDecoration(
+                      labelText: 'Merokok (ketik "ya" atau "tidak")',
+                      labelStyle: const TextStyle(color: Colors.white),
+                      filled: true,
+                      fillColor: Colors.white.withOpacity(0.1),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              const SizedBox(height: 40),
-
-              ElevatedButton(
-                onPressed: _submitData,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 250, 249, 250),
-                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+                  const SizedBox(height: 20),
+                        
+                  TextField(
+                    controller: _cabangOlahragaController,
+                    decoration: InputDecoration(
+                      labelText: 'Cabang Olahraga',
+                      labelStyle: const TextStyle(color: Colors.white),
+                      filled: true,
+                      fillColor: Colors.white.withOpacity(0.1),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
                   ),
-                ),
-                child: const Text(
-                  'Register',
-                  style: TextStyle(fontSize: 18),
-                ),
+                  const SizedBox(height: 40),
+                        
+                  ElevatedButton(
+                    onPressed: _submitData,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 250, 249, 250),
+                      padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: const Text(
+                      'Register',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

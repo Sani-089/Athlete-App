@@ -692,85 +692,87 @@ class _HomePageState extends State<HomePage> {
             end: Alignment.bottomCenter,
           ),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const SizedBox(height: 30),
-            Image.asset(
-              'images/profile.png',
-              width: 110,
-            ),
-            const SizedBox(height: 20),
-            const Text(
-              "Athlete App",
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(height: 30),
+              Image.asset(
+                'images/profile.png',
+                width: 110,
               ),
-            ),
-            const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  StreamBuilder(
-                    stream: heartRateRef.onValue,
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return _buildStatCard("-", "Detak Jantung", Icons.favorite, Colors.red);
-                      } else if (snapshot.hasError) {
-                        return _buildStatCard("Error", "Detak Jantung", Icons.error, Colors.red);
-                      } else if (!snapshot.hasData || snapshot.data!.snapshot.value == null) {
-                        return _buildStatCard("-", "Detak Jantung", Icons.favorite, Colors.red);
-                      } else {
-                        final heartRate = snapshot.data!.snapshot.value.toString();
-                        if (heartRate != lastHeartRate) {
-                          lastHeartRate = heartRate;
-                          _sendDataToServer(heartRate, lastSpo2);
-                        }
-                        return _buildStatCard("$heartRate BPM", "Detak Jantung", Icons.favorite, Colors.red);
-                      }
-                    },
-                  ),
-                  StreamBuilder(
-                    stream: spo2Ref.onValue,
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return _buildStatCard("-", "SpO2", Icons.water_drop, Colors.red);
-                      } else if (snapshot.hasError) {
-                        return _buildStatCard("Error", "SpO2", Icons.error, Colors.red);
-                      } else if (!snapshot.hasData || snapshot.data!.snapshot.value == null) {
-                        return _buildStatCard("-", "SpO2", Icons.water_drop, Colors.red);
-                      } else {
-                        final spo2 = snapshot.data!.snapshot.value.toString();
-                        if (spo2 != lastSpo2) {
-                          lastSpo2 = spo2;
-                          _sendDataToServer(lastHeartRate, spo2);
-                        }
-                        return _buildStatCard("$spo2%", "SpO2", Icons.water_drop, Colors.red);
-                      }
-                    },
-                  ),
-                ],
+              const SizedBox(height: 20),
+              const Text(
+                "Athlete App",
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
               ),
-            ),
-            const SizedBox(height: 20),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const HistoryPage()),
-                );
-              },
-              child: Padding(
+              const SizedBox(height: 20),
+              Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: _buildStatCard(prediction, "Prediksi", Icons.check_circle, Colors.green),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    StreamBuilder(
+                      stream: heartRateRef.onValue,
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.waiting) {
+                          return _buildStatCard("-", "Detak Jantung", Icons.favorite, Colors.red);
+                        } else if (snapshot.hasError) {
+                          return _buildStatCard("Error", "Detak Jantung", Icons.error, Colors.red);
+                        } else if (!snapshot.hasData || snapshot.data!.snapshot.value == null) {
+                          return _buildStatCard("-", "Detak Jantung", Icons.favorite, Colors.red);
+                        } else {
+                          final heartRate = snapshot.data!.snapshot.value.toString();
+                          if (heartRate != lastHeartRate) {
+                            lastHeartRate = heartRate;
+                            _sendDataToServer(heartRate, lastSpo2);
+                          }
+                          return _buildStatCard("$heartRate BPM", "Detak Jantung", Icons.favorite, Colors.red);
+                        }
+                      },
+                    ),
+                    StreamBuilder(
+                      stream: spo2Ref.onValue,
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.waiting) {
+                          return _buildStatCard("-", "SpO2", Icons.water_drop, Colors.red);
+                        } else if (snapshot.hasError) {
+                          return _buildStatCard("Error", "SpO2", Icons.error, Colors.red);
+                        } else if (!snapshot.hasData || snapshot.data!.snapshot.value == null) {
+                          return _buildStatCard("-", "SpO2", Icons.water_drop, Colors.red);
+                        } else {
+                          final spo2 = snapshot.data!.snapshot.value.toString();
+                          if (spo2 != lastSpo2) {
+                            lastSpo2 = spo2;
+                            _sendDataToServer(lastHeartRate, spo2);
+                          }
+                          return _buildStatCard("$spo2%", "SpO2", Icons.water_drop, Colors.red);
+                        }
+                      },
+                    ),
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(height: 30),
-          ],
+              const SizedBox(height: 20),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HistoryPage()),
+                  );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: _buildStatCard(prediction, "Prediksi", Icons.check_circle, Colors.green),
+                ),
+              ),
+              const SizedBox(height: 30),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
